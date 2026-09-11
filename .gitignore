@@ -1,0 +1,27 @@
+# Entorno virtual
+venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+
+# Django
+db.sqlite3
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Distribución
+*.egg-info/
+dist/
+build/

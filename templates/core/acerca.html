@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Acerca de{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow">
+            <div class="card-body">
+                <h1><i class="bi bi-info-circle"></i> Acerca del Sistema</h1>
+                <hr>
+                <h5>HelpDesk — Sistema de Soporte Técnico Básico</h5>
+                <p>
+                    Este sistema permite centralizar y gestionar incidentes o reportes de fallas
+                    técnicas en una oficina o universidad. Los usuarios pueden consultar el estado
+                    de los tickets, filtrar por estado y ver el detalle de cada reporte.
+                </p>
+                <h5>Características</h5>
+                <ul>
+                    <li>Registro y gestión de tickets de soporte.</li>
+                    <li>Clasificación por prioridad (Baja, Media, Alta).</li>
+                    <li>Seguimiento de estado (Abierto, En Proceso, Resuelto).</li>
+                    <li>Dashboard con resumen general.</li>
+                    <li>Filtrado por estado mediante rutas dinámicas.</li>
+                </ul>
+                <h5>Tecnologías</h5>
+                <ul>
+                    <li>Python &amp; Django</li>
+                    <li>SQLite</li>
+                    <li>Bootstrap 5 (CDN)</li>
+                </ul>
+                <h5>Proyecto Académico</h5>
+                <p class="text-muted">
+                    Desarrollado como entrega evaluativa para demostrar el uso de múltiples
+                    aplicaciones, vistas basadas en funciones, rutas dinámicas y consultas ORM en Django.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

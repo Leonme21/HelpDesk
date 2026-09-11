@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {% if estado_filtro %}Tickets — {{ estado_filtro }}{% else %}Todos los Tickets{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="row mb-3">
+    <div class="col">
+        {% if estado_filtro %}
+            <h1><i class="bi bi-funnel"></i> Tickets: {{ estado_filtro }}</h1>
+            <a href="{% url 'tickets:lista_tickets' %}" class="btn btn-sm btn-outline-secondary">
+                <i class="bi bi-x-circle"></i> Quitar filtro
+            </a>
+        {% else %}
+            <h1><i class="bi bi-list-task"></i> Todos los Tickets</h1>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Filtros rápidos -->
+<div class="row mb-3">
+    <div class="col">
+        <div class="btn-group" role="group">
+            <a href="{% url 'tickets:filtrar_por_estado' 'Abierto' %}" class="btn btn-outline-warning">Abiertos</a>
+            <a href="{% url 'tickets:filtrar_por_estado' 'En Proceso' %}" class="btn btn-outline-info">En Proceso</a>
+            <a href="{% url 'tickets:filtrar_por_estado' 'Resuelto' %}" class="btn btn-outline-success">Resueltos</a>
+        </div>
+    </div>
+</div>
+
+{% if tickets %}
+<div class="table-responsive">
+    <table class="table table-hover shadow-sm">
+        <thead class="table-dark">
+            <tr>
+                <th>#</th>
+                <th>Título</th>
+                <th>Prioridad</th>
+                <th>Estado</th>
+                <th>Fecha</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ticket in tickets %}
+            <tr>
+                <td>{{ ticket.id }}</td>
+                <td>{{ ticket.titulo }}</td>
+                <td>
+                    {% if ticket.prioridad == 'Alta' %}
+                        <span class="badge bg-danger">{{ ticket.prioridad }}</span>
+                    {% elif ticket.prioridad == 'Media' %}
+                        <span class="badge bg-warning text-dark">{{ ticket.prioridad }}</span>
+                    {% else %}
+                        <span class="badge bg-secondary">{{ ticket.prioridad }}</span>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if ticket.estado == 'Abierto' %}
+                        <span class="badge bg-warning text-dark">{{ ticket.estado }}</span>
+                    {% elif ticket.estado == 'En Proceso' %}
+                        <span class="badge bg-info">{{ ticket.estado }}</span>
+                    {% else %}
+                        <span class="badge bg-success">{{ ticket.estado }}</span>
+                    {% endif %}
+                </td>
+                <td>{{ ticket.fecha_creacion|date:"d/m/Y H:i" }}</td>
+                <td>
+                    <a href="{% url 'tickets:detalle_ticket' ticket.id %}" class="btn btn-sm btn-primary">
+                        <i class="bi bi-eye"></i> Ver
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<div class="alert alert-info">
+    <i class="bi bi-info-circle"></i> No se encontraron tickets{% if estado_filtro %} con estado "{{ estado_filtro }}"{% endif %}.
+</div>
+{% endif %}
+{% endblock %}
