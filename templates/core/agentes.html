@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Directorio de Agentes{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Directorio de Agentes</h2>
+    <p class="text-muted">Esta información proviene del microservicio externo alojado en Supabase.</p>
+
+    {% if agentes %}
+    <div class="row mt-4">
+        {% for agente in agentes %}
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">{{ agente.nombre }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ agente.especialidad }}</h6>
+                    <p class="card-text">
+                        <strong>Email:</strong> {{ agente.email }}
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="alert alert-warning mt-3">
+        No se pudieron cargar los agentes o no hay agentes registrados. 
+        Asegúrate de que el microservicio esté corriendo y conectado a Supabase.
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
