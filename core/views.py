@@ -19,7 +19,7 @@ def acerca(request):
     return render(request, 'core/acerca.html')
 
 def directorio_agentes(request):
-    url_microservicio = "http://127.0.0.1:5000/api/agentes" # URL de prueba local
+    url_microservicio = "https://microservicio-agentes.onrender.com/api/agentes" # URL de Producción en Render
     
     try:
         response = requests.get(url_microservicio, timeout=5)
