@@ -1,1 +1,17 @@
-﻿C:\Users\Miguel
+{% extends 'base.html' %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+<h1>Dashboard del HelpDesk</h1>
+<p>Bienvenido al sistema de soporte técnico. Aquí tienes el resumen de los tickets:</p>
+
+<ul>
+    <li><strong>Total de tickets:</strong> {{ total }}</li>
+    <li><strong>Abiertos:</strong> {{ abiertos }}</li>
+    <li><strong>En Proceso:</strong> {{ en_proceso }}</li>
+    <li><strong>Resueltos:</strong> {{ resueltos }}</li>
+</ul>
+
+<a href="{% url 'tickets:lista_tickets' %}">Ver todos los tickets</a>
+{% endblock %}
